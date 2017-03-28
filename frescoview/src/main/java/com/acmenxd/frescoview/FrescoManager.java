@@ -79,7 +79,7 @@ public final class FrescoManager {
 
     /**
      * 设置Log开关 & 等级
-     * * 默认为开 & Log.VERBOSE
+     * * 默认为 开 & Log.VERBOSE
      */
     public static void setOpen(boolean isOpen, int logLevel) {
         LOG_OPEN = isOpen;
@@ -111,7 +111,7 @@ public final class FrescoManager {
     }
 
     /**
-     * 初始化
+     * 初始化 -> 配置完成后必须调用此函数生效
      */
     public static final synchronized void init() {
         // 内存配置
