@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:fresco="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="btnClick1"
+            android:text="获取网络图片"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="btnClick2"
+            android:text="获取网络图片"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="btnClick3"
+            android:text="动画开始"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="btnClick4"
+            android:text="动画暂停"
+            android:textAllCaps="false"/>
+
+        <com.acmenxd.frescoview.FrescoView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            fresco:actualImageScaleType="focusCrop"
+            fresco:backgroundImage="@color/colorPrimaryDark"
+            fresco:fadeDuration="1000"
+            fresco:failureImage="@mipmap/ic_launcher"
+            fresco:failureImageScaleType="centerInside"
+            fresco:overlayImage="@mipmap/ic_launcher"
+            fresco:placeholderImage="@color/colorPrimary"
+            fresco:placeholderImageScaleType="fitCenter"
+            fresco:pressedStateOverlayImage="@color/colorAccent"
+            fresco:progressBarAutoRotateInterval="1000"
+            fresco:progressBarImage="@mipmap/ic_launcher"
+            fresco:progressBarImageScaleType="centerInside"
+            fresco:retryImage="@color/colorAccent"
+            fresco:retryImageScaleType="centerCrop"
+            fresco:roundAsCircle="false"
+            fresco:roundBottomLeft="false"
+            fresco:roundBottomRight="true"
+            fresco:roundTopLeft="true"
+            fresco:roundTopRight="false"
+            fresco:roundWithOverlayColor="@color/colorAccent"
+            fresco:roundedCornerRadius="30dp"
+            fresco:roundingBorderColor="@color/colorAccent"
+            fresco:roundingBorderWidth="10dp"
+            />
+
+        <com.acmenxd.frescoview.FrescoView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <com.acmenxd.frescoview.FrescoView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+</ScrollView>
