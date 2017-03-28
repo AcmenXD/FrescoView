@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("");
+        setTitle("FrescoView使用演示");
         setContentView(R.layout.activity_main);
         iv1 = (FrescoView) findViewById(R.id.imageView1);
         iv2 = (FrescoView) findViewById(R.id.imageView2);
