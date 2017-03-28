@@ -44,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void btnClick1(View view) {
-        // 加载回调
+        /**
+         * 加载回调
+         */
         FrescoCallback callback = new FrescoCallback() {
             @Override
             public void succeed(String id, ImageInfo imageInfo, Animatable animatable) {
@@ -61,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
                     animatable.start();
                 }
             }
-
             @Override
             public void failed(String id, Throwable throwable) {
                 super.failed(id, throwable);

@@ -93,19 +93,89 @@ FrescoManager.init();
 ```
 ### 使用 -> 以下代码 注释很详细、很重要很重要很重要!!!
 ---
-```java
-/**
- * v可替换成d/i/w/e/a,对应不同等级的日志
- * test可替换成java任意类型
- */
-Logger.v("test");
+```xml
+<!-- xml布局中定义FrescoView, 请查看FrescoViewDoc.java,有详细的参数解释 -->
+<com.acmenxd.frescoview.FrescoView
+    android:id="@+id/imageView1"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    fresco:actualImageScaleType="focusCrop"
+    fresco:backgroundImage="@color/colorPrimaryDark"
+    fresco:fadeDuration="1000"
+    fresco:failureImage="@mipmap/ic_launcher"
+    fresco:failureImageScaleType="centerInside"
+    fresco:overlayImage="@mipmap/ic_launcher"
+    fresco:placeholderImage="@color/colorPrimary"
+    fresco:placeholderImageScaleType="fitCenter"
+    fresco:pressedStateOverlayImage="@color/colorAccent"
+    fresco:progressBarAutoRotateInterval="1000"
+    fresco:progressBarImage="@mipmap/ic_launcher"
+    fresco:progressBarImageScaleType="centerInside"
+    fresco:retryImage="@color/colorAccent"
+    fresco:retryImageScaleType="centerCrop"
+    fresco:roundAsCircle="false"
+    fresco:roundBottomLeft="false"
+    fresco:roundBottomRight="true"
+    fresco:roundTopLeft="true"
+    fresco:roundTopRight="false"
+    fresco:roundWithOverlayColor="@color/colorAccent"
+    fresco:roundedCornerRadius="30dp"
+    fresco:roundingBorderColor="@color/colorAccent"
+    fresco:roundingBorderWidth="10dp"
+    />
 ```
+---
 ```java
-// MainActivity.java:28 可点击跳转到对应代码行
-V/com.acmenxd.logger.demo.MainActivity.java:╔═════════════════════════════════════════════════════════════════════════════════════════
-V/com.acmenxd.logger.demo.MainActivity.java:║ * [ Logger -=(MainActivity.java:28)=- OnCreate ]
-V/com.acmenxd.logger.demo.MainActivity.java:║ 	test
-V/com.acmenxd.logger.demo.MainActivity.java:╚═════════════════════════════════════════════════════════════════════════════════════════
+// ** 请查看FrescoViewDoc.java,有详细的参数解释 -->
+FrescoView iv = (FrescoView) findViewById(R.id.imageView1);
+/**
+ * 加载回调
+ */
+FrescoCallback callback = new FrescoCallback() {
+    @Override
+    public void succeed(String id, ImageInfo imageInfo, Animatable animatable) {
+        super.succeed(id, imageInfo, animatable);
+        Log.e("AcmenXD", "onSuccess");
+        if (imageInfo != null) {
+            QualityInfo qualityInfo = imageInfo.getQualityInfo();
+            Log.e("AcmenXD", appendStrs("Size: ", imageInfo.getWidth(), " x ", imageInfo.getHeight()));
+            Log.e("AcmenXD", appendStrs("Quality level: ", qualityInfo.getQuality()));
+            Log.e("AcmenXD", appendStrs("good enough: ", qualityInfo.isOfGoodEnoughQuality()));
+            Log.e("AcmenXD", appendStrs("full quality: ", qualityInfo.isOfFullQuality()));
+        }
+        if (animatable != null) {
+            animatable.start();
+        }
+    }
+    @Override
+    public void failed(String id, Throwable throwable) {
+        super.failed(id, throwable);
+        Log.e("AcmenXD", "onFailure");
+    }
+};
+iv.image()
+        .setImageURI(R.color.colorAccent)
+        .setImageURI(R.mipmap.ic_launcher)
+        .setImageURI("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1854928198,1677845423&fm=23&gp=0.jpg") //gif|webp格式
+        .setBackgroundImage(getResources().getDrawable(R.color.colorPrimary))
+        .setPlaceholderImage(R.color.colorAccent)
+        .setProgressBarImage(R.mipmap.ic_launcher)
+        .setFailureImage(R.color.colorAccent)
+        .setRetryImage(R.mipmap.ic_launcher)
+        .setProgressBarImage(R.color.colorAccent)
+        .setLocalThumbnailPreviewsEnabled(true)
+        .setProgressiveRenderingEnabled(true)
+        .setAutoPlayAnimations(true)
+        .setActualImageScaleType(ScalingUtils.ScaleType.FIT_CENTER)
+        .setRoundingParams(30, Color.BLACK, 0, 0, false)
+        .setFadeDuration(0)
+        .setControllerListener(callback)
+//                .setFirstAvailableImageURIs(
+//                        "http://image52.360doc.com/DownloadImg/2012/06/0316/24581213_7.jpg",
+//                        "http://image52.360doc.com/DownloadImg/2012/06/0316/24581213_6.jpg")
+//                .setAspectRatio(10, 3)
+//                .setPressedStateOverlay(getResources().getDrawable(R.mipmap.ic_launcher))
+        .commit();
 ```
 ---
 ### 打个小广告^_^

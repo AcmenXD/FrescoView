@@ -40,7 +40,7 @@
             android:onClick="btnClick4"
             android:text="动画暂停"
             android:textAllCaps="false"/>
-
+        <!-- xml布局中定义FrescoView -->
         <com.acmenxd.frescoview.FrescoView
             android:id="@+id/imageView1"
             android:layout_width="match_parent"
