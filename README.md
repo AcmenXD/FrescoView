@@ -126,7 +126,7 @@ FrescoManager.init();
 ```
 ---
 ```java
-// ** 请查看FrescoViewDoc.java,有详细的参数解释 -->
+// ** 请查看FrescoViewDoc.java,有详细的参数解释
 FrescoView iv = (FrescoView) findViewById(R.id.imageView1);
 /**
  * 加载回调
