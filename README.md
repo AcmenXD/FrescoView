@@ -1,5 +1,5 @@
 # FrescoView
-基于facebook出品的fresco(强大的图片加载组件https://www.fresco-cn.org)进行二次开发的 更易于开发者使用的库.
+基于facebook出品的fresco( 强大的图片加载组件 https://www.fresco-cn.org )进行二次开发的 更易于开发者使用的库.
 ### 依赖
 ---
 - AndroidStudio
@@ -18,7 +18,7 @@
 ---
 ```
      #FrescoView默认使用okhttp3,所以要加入此配置
-	 -dontwarn okhttp3.**
+     -dontwarn okhttp3.**
      -dontwarn okio.**
      -dontwarn com.squareup.okhttp3.**
 
@@ -51,7 +51,7 @@
 - 支持图片渐显动画
 - 支持控制gif动画的播放和停止
 - 支持函数链式调用,方便使用
-- 更多功能请查看项目根目录下<a href="https://github.com/AcmenXD/FrescoView/blob/master/frescoview/src/main/java/com/acmenxd/frescoview/FrescoViewDoc.java" target="_blank">[frescoview/src/main/java/com/acmenxd/frescoview/FrescoViewDoc.java]文件,有xml或代码中每个函数的具体含义
+- 更多功能请查看项目根目录下<a href="https://github.com/AcmenXD/FrescoView/blob/master/frescoview/src/main/java/com/acmenxd/frescoview/FrescoViewDoc.java" target="_blank">frescoview/src/main/java/com/acmenxd/frescoview/FrescoViewDoc.java</a>文件,有xml或代码中每个函数的具体含义
 ### 配置
 ---
 **在Application中配置**
