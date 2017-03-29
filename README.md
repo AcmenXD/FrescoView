@@ -57,11 +57,6 @@
 **在Application中配置**
 ```java
 /**
- * 设置包名 -> 用于存取资源图片的路径拼接
- * * 默认为FrescoView
- */
-FrescoManager.setPkgName(getPackageName());
-/**
  * 初始化
  * context必须设置
  */
