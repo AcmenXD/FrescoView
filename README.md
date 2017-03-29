@@ -12,7 +12,7 @@
 	}
 ```
 ```
-	 compile 'com.github.AcmenXD:FrescoView:1.0'
+	 compile 'com.github.AcmenXD:FrescoView:1.1'
 ```
 ### 混淆
 ---
