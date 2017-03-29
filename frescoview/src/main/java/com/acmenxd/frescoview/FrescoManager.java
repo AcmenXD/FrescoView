@@ -53,7 +53,7 @@ public final class FrescoManager {
     /**
      * 使用配置
      */
-    private static String APP_PKG_NAME = "FrescoView";  // 包名 -> 用于存取资源图片的路径拼接
+    protected static String APP_PKG_NAME = "FrescoView";  // 包名 -> 用于存取资源图片的路径拼接
     private static Context sContext; // 上下文对象
     private static boolean LOG_OPEN = true; // Log开关
     private static int LOG_LEVEL = Log.VERBOSE; // Log等级
