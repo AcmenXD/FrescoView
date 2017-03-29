@@ -53,21 +53,13 @@ public final class FrescoManager {
     /**
      * 使用配置
      */
-    public static String APP_PKG_NAME = "FrescoView";  // 包名
+    private static String APP_PKG_NAME = "FrescoView";  // 包名 -> 用于存取资源图片的路径拼接
     private static Context sContext; // 上下文对象
     private static boolean LOG_OPEN = true; // Log开关
     private static int LOG_LEVEL = Log.VERBOSE; // Log等级
-    private static File IMAGE_CACHE_PATH = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Image/");
+    private static File IMAGE_CACHE_PATH = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/FrescoView/");
     private static String MAIN_CACHE_DIR = "MainCache";
     private static String SMALL_CACHE_DIR = "SmallCache";
-
-    /**
-     * 设置包名 -> 用于存取资源图片的路径拼接
-     * * 默认为FrescoView
-     */
-    public static void setPkgName(String pkgName) {
-        APP_PKG_NAME = pkgName + ".";
-    }
 
     /**
      * 初始化
@@ -75,6 +67,7 @@ public final class FrescoManager {
      */
     public static void setContext(Context pContext) {
         sContext = pContext;
+        APP_PKG_NAME = sContext.getPackageName();
     }
 
     /**
@@ -88,6 +81,7 @@ public final class FrescoManager {
 
     /**
      * 设置缓存图片的存放路径
+     * Environment.getExternalStorageDirectory().getAbsolutePath() + "/FrescoView/"
      *
      * @param cachePath     路径:默认为SD卡根目录Image下 (此路径非直接存储图片的路径,还需要以下目录设置)
      * @param mainCacheDir  大图片存放目录:默认为MainCache目录
