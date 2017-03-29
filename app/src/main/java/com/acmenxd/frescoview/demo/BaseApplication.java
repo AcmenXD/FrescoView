@@ -38,10 +38,9 @@ public final class BaseApplication extends Application {
         /**
          * 配置FrescoView
          */
-        FrescoManager.setPkgName(getPackageName());
         FrescoManager.setContext(this);
         FrescoManager.setOpen(true, Log.VERBOSE);
-        FrescoManager.setCachePath(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Image/", "MainCache", "SmallCache");
+        FrescoManager.setCachePath(Environment.getExternalStorageDirectory().getAbsolutePath() + "/FrescoView/", "MainCache", "SmallCache");
         FrescoManager.setCacheSize(50, 20);
         FrescoManager.init();
         // 初始化完毕
