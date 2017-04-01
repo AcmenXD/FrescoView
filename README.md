@@ -1,6 +1,9 @@
 # FrescoView
 基于facebook出品的fresco( 强大的图片加载组件 https://www.fresco-cn.org )进行二次开发的 更易于开发者使用的库.
-* 如要了解功能实现,请运行app程序查看控制台日志和源代码! apk下载路径 : <a href="https://github.com/AcmenXD/Resource/blob/master/apks/FrescoView.apk">FrescoView.apk</a>
+
+如要了解功能实现,请运行app程序查看控制台日志和源代码!
+* 源代码 : <a href="https://github.com/AcmenXD/Logger">AcmenXD/Logger</a>
+* apk下载路径 : <a href="https://github.com/AcmenXD/Resource/blob/master/apks/Logger.apk">Logger.apk</a>
 ### 依赖
 ---
 - AndroidStudio
