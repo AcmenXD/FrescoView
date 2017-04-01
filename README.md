@@ -1,4 +1,5 @@
 # FrescoView
+apk下载路径 -> <a href="https://github.com/AcmenXD/Resource/blob/master/apks/FrescoView.apk">FrescoView.apk</a>
 基于facebook出品的fresco( 强大的图片加载组件 https://www.fresco-cn.org )进行二次开发的 更易于开发者使用的库.
 ### 依赖
 ---
