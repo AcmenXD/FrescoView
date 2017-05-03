@@ -16,7 +16,7 @@
 	}
 ```
 ```
-	 compile 'com.github.AcmenXD:FrescoView:1.2'
+	 compile 'com.github.AcmenXD:FrescoView:1.3'
 ```
 ### 混淆
 ---
@@ -43,6 +43,10 @@
 ```
 ### 功能
 ---
+####v1.3 新增功能有:
+- 调整兼容版本,支持4.0(含)以上系统
+
+####v1.2 支持功能如下
 - 支持fresco所支持的大多数功能
 - 支持JPEG / PNG / GIF / WebP 格式
 - 支持加载网络 / res资源 / 本地资源

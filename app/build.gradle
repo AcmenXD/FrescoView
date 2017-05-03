@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.acmenxd.frescoview.demo"
-        minSdkVersion 19
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -32,5 +32,6 @@ dependencies {
     /**
      * 强大的图片加载组件fresco的二次开发, 支持GIF / 圆形 / 圆角 / 边框 / 渐进式加载等功能
      */
-    compile 'com.github.AcmenXD:FrescoView:1.2'
+    //    compile 'com.github.AcmenXD:FrescoView:1.2'
+    compile project(':frescoview')
 }
