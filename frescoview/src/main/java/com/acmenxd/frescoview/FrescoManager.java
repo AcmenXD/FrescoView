@@ -83,7 +83,7 @@ public final class FrescoManager {
      * 设置缓存图片的存放路径
      * Environment.getExternalStorageDirectory().getAbsolutePath() + "/FrescoView/"
      *
-     * @param cachePath     路径:默认为SD卡根目录Image下 (此路径非直接存储图片的路径,还需要以下目录设置)
+     * @param cachePath     路径:默认为SD卡根目录FrescoView下 (此路径非直接存储图片的路径,还需要以下目录设置)
      * @param mainCacheDir  大图片存放目录:默认为MainCache目录
      * @param smallCacheDir 小图片存放目录:默认为SmallCache目录 (如不想区分大小图片,可设置为null或者"",表示大小图片都放在mainCacheDir目录下)
      */
