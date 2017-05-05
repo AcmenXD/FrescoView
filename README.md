@@ -16,7 +16,7 @@
 	}
 ```
 ```
-	 compile 'com.github.AcmenXD:FrescoView:1.3'
+	 compile 'com.github.AcmenXD:FrescoView:1.4'
 ```
 ### 混淆
 ---
@@ -43,6 +43,9 @@
 ```
 ### 功能
 ---
+####v1.4 修复bug:
+- 修复磁盘大小 单位错误问题
+
 ####v1.3 新增功能有:
 - 调整兼容版本,支持4.0(含)以上系统
 
