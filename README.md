@@ -4,6 +4,9 @@
 如要了解功能实现,请运行app程序查看控制台日志和源代码!
 * 源代码 : <a href="https://github.com/AcmenXD/FrescoView">AcmenXD/FrescoView</a>
 * apk下载路径 : <a href="https://github.com/AcmenXD/Resource/blob/master/apks/FrescoView.apk">FrescoView.apk</a>
+
+![jpg](https://github.com/AcmenXD/FrescoView/blob/master/pic/1.jpg)
+
 ### 依赖
 ---
 - AndroidStudio

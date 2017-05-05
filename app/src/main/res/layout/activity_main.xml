@@ -41,6 +41,19 @@
             android:text="动画暂停"
             android:textAllCaps="false"/>
         <!-- xml布局中定义FrescoView -->
+
+        <com.acmenxd.frescoview.FrescoView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <com.acmenxd.frescoview.FrescoView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
         <com.acmenxd.frescoview.FrescoView
             android:id="@+id/imageView1"
             android:layout_width="match_parent"
@@ -68,18 +81,6 @@
             fresco:roundedCornerRadius="30dp"
             fresco:roundingBorderColor="@color/colorAccent"
             fresco:roundingBorderWidth="10dp"
-            />
-
-        <com.acmenxd.frescoview.FrescoView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-
-        <com.acmenxd.frescoview.FrescoView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             />
     </LinearLayout>
 </ScrollView>
