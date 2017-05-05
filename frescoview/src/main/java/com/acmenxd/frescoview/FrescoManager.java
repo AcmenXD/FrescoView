@@ -100,8 +100,8 @@ public final class FrescoManager {
      * @param smallCacheSize 小图片磁盘大小(MB) 默认为20MB
      */
     public static void setCacheSize(long mainCacheSize, long smallCacheSize) {
-        MAX_DISK_CACHE_SIZE = mainCacheSize;
-        MAX_SMALL_DISK_LOW_CACHE_SIZE = smallCacheSize;
+        MAX_DISK_CACHE_SIZE = mainCacheSize * ByteConstants.MB;
+        MAX_SMALL_DISK_LOW_CACHE_SIZE = smallCacheSize * ByteConstants.MB;
     }
 
     /**
