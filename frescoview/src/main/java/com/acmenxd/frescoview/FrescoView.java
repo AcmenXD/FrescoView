@@ -5,6 +5,12 @@ import android.graphics.ColorFilter;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.annotation.AnyRes;
+import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.FloatRange;
+import android.support.annotation.IntRange;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 
@@ -49,7 +55,7 @@ import com.facebook.imagepipeline.request.Postprocessor;
  * -------适用: 图片的像素数 > 视图量级(长 x 宽) x 2 的 非JPEG格式图片
  * -------用法: 在ImageUtils的config中配置setDownsampleEnabled(true) 并 在每个图片请求中调用setResizeOptions(width,height)
  */
-public class FrescoView extends SimpleDraweeView {
+public final class FrescoView extends SimpleDraweeView {
     private Image mImage;
     private Context mContext;
 
@@ -116,7 +122,7 @@ public class FrescoView extends SimpleDraweeView {
         private int isLocalThumbnailPreviewsEnabled = -1; // 缩略图式加载  默认:-1  不启用:0   启用:1
         private int isProgressiveRenderingEnabled = -1; // 开启渐进式加载  默认:-1  不启用:0   启用:1
 
-        private Image(Context pContext, FrescoView pImageView2) {
+        private Image(@NonNull Context pContext, @NonNull FrescoView pImageView2) {
             mContext = pContext;
             mImageView2 = pImageView2;
         }
@@ -134,24 +140,27 @@ public class FrescoView extends SimpleDraweeView {
          * 设置图片请求地址 *格式说明 (Content provider -> 待验证 -> content://)
          */
         //支持网络资源
-        public Image setImageURI(String pImageUri) {
+        public Image setImageURI(@NonNull String pImageUri) {
             if (pImageUri.startsWith("http://") || pImageUri.startsWith("https://")) {
                 setImageURI(pImageUri, null);
             }
             return getThis();
         }
+
         //支持res目录下的资源
-        public Image setImageURI(int resId) {
+        public Image setImageURI(@AnyRes int resId) {
             setImageURI(FrescoUtils.appendStrs("res://", FrescoManager.APP_PKG_NAME, "/", resId), null);
             return getThis();
         }
+
         //支持本地文件资源
-        public Image setImageURI_File(String filePath) {
+        public Image setImageURI_File(@NonNull String filePath) {
             setImageURI(FrescoUtils.appendStrs("file://", filePath), null);
             return getThis();
         }
+
         //支持asset目录下的资源
-        public Image setImageURI_Asset(String assetPath) {
+        public Image setImageURI_Asset(@NonNull String assetPath) {
             setImageURI(FrescoUtils.appendStrs("asset://", assetPath), null);
             return getThis();
         }
@@ -159,7 +168,7 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * 先显示低分辨率的图,然后是高分辨率的图(优先级 > setHighImageURI > setImageURI)
          */
-        public Image setLowImageURI(String pLowImageUri) {
+        public Image setLowImageURI(@NonNull String pLowImageUri) {
             if (TextUtils.isEmpty(pLowImageUri)) {
                 throw new NullPointerException("lowImageURI can't null or ''");
             }
@@ -170,7 +179,7 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * 先显示低分辨率的图,然后是高分辨率的图(优先级 > setImageURI)
          */
-        public Image setHighImageURI(String pHighImageUri) {
+        public Image setHighImageURI(@NonNull String pHighImageUri) {
             if (TextUtils.isEmpty(pHighImageUri)) {
                 throw new NullPointerException("highImageURI can't null or ''");
             }
@@ -182,7 +191,7 @@ public class FrescoView extends SimpleDraweeView {
          * 加载最先可用的图像(同一个图片有多个Uri的情况下,设置多个Uri路径)
          * * 显示规则:检查集合中任意uri是否存在,如存在则显示,如不存在,则寻找磁盘缓存,如不存在,则外部请求
          */
-        public Image setFirstAvailableImageURIs(String... pFirstAvailableImageUris) {
+        public Image setFirstAvailableImageURIs(@NonNull String... pFirstAvailableImageUris) {
             if (pFirstAvailableImageUris == null || pFirstAvailableImageUris.length <= 0) {
                 throw new NullPointerException("highImageURI can't null or ''");
             }
@@ -193,22 +202,22 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * 修改占位图
          */
-        public Image setPlaceholderImage(int resId) {
+        public Image setPlaceholderImage(@DrawableRes int resId) {
             getGenericDraweeHierarchy().setPlaceholderImage(resId);
             return getThis();
         }
 
-        public Image setPlaceholderImage(int resId, ScalingUtils.ScaleType pScaleType) {
+        public Image setPlaceholderImage(@DrawableRes int resId, ScalingUtils.ScaleType pScaleType) {
             getGenericDraweeHierarchy().setPlaceholderImage(resId, pScaleType);
             return getThis();
         }
 
-        public Image setPlaceholderImage(Drawable pDrawable) {
+        public Image setPlaceholderImage(@NonNull Drawable pDrawable) {
             getGenericDraweeHierarchy().setPlaceholderImage(pDrawable);
             return getThis();
         }
 
-        public Image setPlaceholderImage(Drawable pDrawable, ScalingUtils.ScaleType pScaleType) {
+        public Image setPlaceholderImage(@NonNull Drawable pDrawable, @NonNull ScalingUtils.ScaleType pScaleType) {
             getGenericDraweeHierarchy().setPlaceholderImage(pDrawable, pScaleType);
             return getThis();
         }
@@ -216,22 +225,22 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * 修改请求失败的图像
          */
-        public Image setFailureImage(int resId) {
+        public Image setFailureImage(@DrawableRes int resId) {
             getGenericDraweeHierarchy().setFailureImage(resId);
             return getThis();
         }
 
-        public Image setFailureImage(int resId, ScalingUtils.ScaleType pScaleType) {
+        public Image setFailureImage(@DrawableRes int resId, @NonNull ScalingUtils.ScaleType pScaleType) {
             getGenericDraweeHierarchy().setFailureImage(resId, pScaleType);
             return getThis();
         }
 
-        public Image setFailureImage(Drawable pDrawable) {
+        public Image setFailureImage(@NonNull Drawable pDrawable) {
             getGenericDraweeHierarchy().setFailureImage(pDrawable);
             return getThis();
         }
 
-        public Image setFailureImage(Drawable pDrawable, ScalingUtils.ScaleType pScaleType) {
+        public Image setFailureImage(@NonNull Drawable pDrawable, @NonNull ScalingUtils.ScaleType pScaleType) {
             getGenericDraweeHierarchy().setFailureImage(pDrawable, pScaleType);
             return getThis();
         }
@@ -239,25 +248,25 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * 加载失败重试显示的图片,会触发点击重试四次,如果还是加载失败,则显示请求失败的图像
          */
-        public Image setRetryImage(int resId) {
+        public Image setRetryImage(@DrawableRes int resId) {
             getPipelineDraweeControllerBuilder().setTapToRetryEnabled(true);
             getGenericDraweeHierarchy().setRetryImage(resId);
             return getThis();
         }
 
-        public Image setRetryImage(int resId, ScalingUtils.ScaleType pScaleType) {
+        public Image setRetryImage(@DrawableRes int resId, @NonNull ScalingUtils.ScaleType pScaleType) {
             getPipelineDraweeControllerBuilder().setTapToRetryEnabled(true);
             getGenericDraweeHierarchy().setRetryImage(resId, pScaleType);
             return getThis();
         }
 
-        public Image setRetryImage(Drawable pDrawable) {
+        public Image setRetryImage(@NonNull Drawable pDrawable) {
             getPipelineDraweeControllerBuilder().setTapToRetryEnabled(true);
             getGenericDraweeHierarchy().setRetryImage(pDrawable);
             return getThis();
         }
 
-        public Image setRetryImage(Drawable pDrawable, ScalingUtils.ScaleType pScaleType) {
+        public Image setRetryImage(@NonNull Drawable pDrawable, @NonNull ScalingUtils.ScaleType pScaleType) {
             getPipelineDraweeControllerBuilder().setTapToRetryEnabled(true);
             getGenericDraweeHierarchy().setRetryImage(pDrawable, pScaleType);
             return getThis();
@@ -268,22 +277,22 @@ public class FrescoView extends SimpleDraweeView {
          * * 支持AnimationDrawable动画,xml自定义动画
          * * 如需精确显示进度 参考-> https://www.fresco-cn.org/docs/progress-bars.html
          */
-        public Image setProgressBarImage(int resId) {
+        public Image setProgressBarImage(@DrawableRes int resId) {
             getGenericDraweeHierarchy().setProgressBarImage(resId);
             return getThis();
         }
 
-        public Image setProgressBarImage(int resId, ScalingUtils.ScaleType pScaleType) {
+        public Image setProgressBarImage(@DrawableRes int resId, @NonNull ScalingUtils.ScaleType pScaleType) {
             getGenericDraweeHierarchy().setProgressBarImage(resId, pScaleType);
             return getThis();
         }
 
-        public Image setProgressBarImage(Drawable pDrawable) {
+        public Image setProgressBarImage(@NonNull Drawable pDrawable) {
             getGenericDraweeHierarchy().setProgressBarImage(pDrawable);
             return getThis();
         }
 
-        public Image setProgressBarImage(Drawable pDrawable, ScalingUtils.ScaleType pScaleType) {
+        public Image setProgressBarImage(@NonNull Drawable pDrawable, @NonNull ScalingUtils.ScaleType pScaleType) {
             getGenericDraweeHierarchy().setProgressBarImage(pDrawable, pScaleType);
             return getThis();
         }
@@ -291,7 +300,7 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * 设置背景图像
          */
-        public Image setBackgroundImage(Drawable pDrawable) {
+        public Image setBackgroundImage(@NonNull Drawable pDrawable) {
             getGenericDraweeHierarchy().setBackgroundImage(pDrawable);
             return getThis();
         }
@@ -299,12 +308,12 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * 设置一个新的覆盖图像 -> 在指定的索引位置。
          */
-        public Image setOverlayImage(Drawable pDrawable) {
+        public Image setOverlayImage(@NonNull Drawable pDrawable) {
             getGenericDraweeHierarchy().setOverlayImage(pDrawable);
             return getThis();
         }
 
-        public Image setOverlayImage(int index, Drawable pDrawable) {
+        public Image setOverlayImage(@IntRange(from = 0) int index, @NonNull Drawable pDrawable) {
             getGenericDraweeHierarchy().setOverlayImage(index, pDrawable);
             return getThis();
         }
@@ -312,7 +321,7 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * 设置控制器监听
          */
-        public Image setControllerListener(ControllerListener<? super ImageInfo> pListener) {
+        public Image setControllerListener(@NonNull ControllerListener<? super ImageInfo> pListener) {
             getPipelineDraweeControllerBuilder().setControllerListener(pListener);
             return getThis();
         }
@@ -320,7 +329,7 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * 指定ImageView2的宽高比
          */
-        public Image setAspectRatio(int widthRatio, int heightRatio) {
+        public Image setAspectRatio(@IntRange(from = 0) int widthRatio, @IntRange(from = 0) int heightRatio) {
             if (widthRatio <= 0 || heightRatio <= 0) {
                 throw new ArithmeticException("widthRatio or heightRatio must > 0");
             }
@@ -331,7 +340,7 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * 修改"要显示的图片"的缩放类型
          */
-        public Image setActualImageScaleType(ScalingUtils.ScaleType pScaleType) {
+        public Image setActualImageScaleType(@NonNull ScalingUtils.ScaleType pScaleType) {
             getGenericDraweeHierarchy().setActualImageScaleType(pScaleType);
             return getThis();
         }
@@ -339,7 +348,7 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * 修改"要显示的图片"的color filter
          */
-        public Image setActualImageColorFilter(ColorFilter pColorFilter) {
+        public Image setActualImageColorFilter(@NonNull ColorFilter pColorFilter) {
             getGenericDraweeHierarchy().setActualImageColorFilter(pColorFilter);
             return getThis();
         }
@@ -348,7 +357,7 @@ public class FrescoView extends SimpleDraweeView {
          * 如果选择缩放类型为ScalingUtils.ScaleType.FOCUS_CROP
          * 需要指定一个居中点:new PointF(0.5f,0.5f)
          */
-        public Image setActualImageFocusPoint(PointF pFocusPoint) {
+        public Image setActualImageFocusPoint(@NonNull PointF pFocusPoint) {
             getGenericDraweeHierarchy().setActualImageFocusPoint(pFocusPoint);
             return getThis();
         }
@@ -356,7 +365,7 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * 修改圆角|圆形参数
          */
-        public Image setRoundingParams(float pRadius, int pOverlayColor, int pBorder, int pBorderColor, boolean isCircle) {
+        public Image setRoundingParams(@FloatRange(from = 0) float pRadius, @ColorInt int pOverlayColor, @IntRange(from = 0) int pBorder, @ColorInt int pBorderColor, boolean isCircle) {
             RoundingParams roundingParams = getGenericDraweeHierarchy().getRoundingParams();
             if (roundingParams == null) {
                 roundingParams = new RoundingParams();
@@ -364,12 +373,12 @@ public class FrescoView extends SimpleDraweeView {
             roundingParams.setCornersRadius(pRadius); // 设置圆角|圆形的角度 180度会变成圆形
             roundingParams.setOverlayColor(pOverlayColor); // 设置覆盖的颜色
             roundingParams.setBorder(pBorderColor, pBorder); // 设置边框尺寸和颜色
-            roundingParams.setRoundAsCircle(isCircle); // 是否设置为原型
+            roundingParams.setRoundAsCircle(isCircle); // 是否设置为圆型
             setRoundingParams(roundingParams);
             return getThis();
         }
 
-        public Image setRoundingParams(RoundingParams pRoundingParams) {
+        public Image setRoundingParams(@NonNull RoundingParams pRoundingParams) {
             getGenericDraweeHierarchy().setRoundingParams(pRoundingParams);
             return getThis();
         }
@@ -377,7 +386,7 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * 渐显的时长 -> 毫秒
          */
-        public Image setFadeDuration(int pFadeDuration) {
+        public Image setFadeDuration(@IntRange(from = 0) int pFadeDuration) {
             getGenericDraweeHierarchy().setFadeDuration(pFadeDuration);
             return getThis();
         }
@@ -385,11 +394,11 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * Resizing缩放模式所需宽高参数
          */
-        public Image setResizeOptions(int width, int height) {
+        public Image setResizeOptions(@IntRange(from = 0) int width, @IntRange(from = 0) int height) {
             return setResizeOptions(new ResizeOptions(width, height));
         }
 
-        public Image setResizeOptions(ResizeOptions pResizeOptions) {
+        public Image setResizeOptions(@NonNull ResizeOptions pResizeOptions) {
             getPipelineDraweeControllerBuilder();
             mResizeOptions = pResizeOptions;
             return getThis();
@@ -407,7 +416,7 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * 设置后处理器 -> 图片加载完成后对图片进行特殊处理(不支持动图加载)
          */
-        public Image setPostprocessor(Postprocessor pPostprocessor) {
+        public Image setPostprocessor(@NonNull Postprocessor pPostprocessor) {
             getPipelineDraweeControllerBuilder();
             mPostprocessor = pPostprocessor;
             return getThis();
@@ -585,7 +594,7 @@ public class FrescoView extends SimpleDraweeView {
         /**
          * 设置按压状态下的叠加图
          */
-        private Image setPressedStateOverlay(Drawable pDrawable) {
+        private Image setPressedStateOverlay(@NonNull Drawable pDrawable) {
             //GenericDraweeHierarchyBuilder.setPressedStateOverlay(pDrawable);
             return getThis();
         }
@@ -609,7 +618,7 @@ public class FrescoView extends SimpleDraweeView {
             isProgressiveRenderingEnabled = -1;
         }
 
-        private Image setImageURI(String pImageUri, Object pCallerContext) {
+        private Image setImageURI(@NonNull String pImageUri, @NonNull Object pCallerContext) {
             if (TextUtils.isEmpty(pImageUri)) {
                 throw new NullPointerException("imageUri can't null or ''");
             }

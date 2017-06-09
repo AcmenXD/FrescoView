@@ -3,6 +3,8 @@ package com.acmenxd.frescoview;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.IntRange;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -65,7 +67,7 @@ public final class FrescoManager {
      * 初始化
      * context必须设置
      */
-    public static void setContext(Context pContext) {
+    public static void setContext(@NonNull Context pContext) {
         sContext = pContext;
         APP_PKG_NAME = sContext.getPackageName();
     }
@@ -87,7 +89,7 @@ public final class FrescoManager {
      * @param mainCacheDir  大图片存放目录:默认为MainCache目录
      * @param smallCacheDir 小图片存放目录:默认为SmallCache目录 (如不想区分大小图片,可设置为null或者"",表示大小图片都放在mainCacheDir目录下)
      */
-    public static void setCachePath(String cachePath, String mainCacheDir, String smallCacheDir) {
+    public static void setCachePath(@NonNull String cachePath, @NonNull String mainCacheDir, @NonNull String smallCacheDir) {
         IMAGE_CACHE_PATH = new File(cachePath);
         MAIN_CACHE_DIR = mainCacheDir;
         SMALL_CACHE_DIR = smallCacheDir;
@@ -99,7 +101,7 @@ public final class FrescoManager {
      * @param mainCacheSize  大图片磁盘大小(MB) 默认为50MB
      * @param smallCacheSize 小图片磁盘大小(MB) 默认为20MB
      */
-    public static void setCacheSize(long mainCacheSize, long smallCacheSize) {
+    public static void setCacheSize(@IntRange(from = 0) long mainCacheSize, @IntRange(from = 0) long smallCacheSize) {
         MAX_DISK_CACHE_SIZE = mainCacheSize * ByteConstants.MB;
         MAX_SMALL_DISK_LOW_CACHE_SIZE = smallCacheSize * ByteConstants.MB;
     }
@@ -178,7 +180,7 @@ public final class FrescoManager {
      * @param uri
      * @return
      */
-    public static boolean checkMemoryCache(String uri) {
+    public static boolean checkMemoryCache(@NonNull String uri) {
         return Fresco.getImagePipeline().isInBitmapMemoryCache(Uri.parse(uri));
     }
 
@@ -189,7 +191,7 @@ public final class FrescoManager {
     /**
      * 根据uri删除缓存
      */
-    public static void deleteCache(String uri) {
+    public static void deleteCache(@NonNull String uri) {
         Uri uri1 = Uri.parse(uri);
         ImagePipeline imagePipeline = Fresco.getImagePipeline();
         imagePipeline.evictFromMemoryCache(uri1);

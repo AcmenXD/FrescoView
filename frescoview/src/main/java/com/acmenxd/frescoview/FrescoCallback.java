@@ -1,6 +1,7 @@
 package com.acmenxd.frescoview;
 
 import android.graphics.drawable.Animatable;
+import android.support.annotation.NonNull;
 
 import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.imagepipeline.image.ImageInfo;
@@ -49,21 +50,23 @@ public abstract class FrescoCallback extends BaseControllerListener<ImageInfo> {
     /**
      * 请求成功被回调
      * * 非必须重写函数,如需要进行重写
-     * @param id : 图片的id值
-     * @param imageInfo : 图片的一些信息,如尺寸等
+     *
+     * @param id         : 图片的id值
+     * @param imageInfo  : 图片的一些信息,如尺寸等
      * @param animatable : 此参数用来操作相关动画,如gif|webp等动画格式
      */
-    public void succeed(String id, ImageInfo imageInfo, Animatable animatable) {
+    public void succeed(@NonNull String id, @NonNull ImageInfo imageInfo, @NonNull Animatable animatable) {
 
     }
 
     /**
      * 请求失败被回调
      * * 非必须重写函数,如需要进行重写
-     * @param id : 图片的id值
+     *
+     * @param id        : 图片的id值
      * @param throwable : 错误信息
      */
-    public void failed(String id, Throwable throwable) {
+    public void failed(@NonNull String id, @NonNull Throwable throwable) {
 
     }
 }

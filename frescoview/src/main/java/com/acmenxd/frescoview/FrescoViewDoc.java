@@ -102,7 +102,7 @@ public class FrescoViewDoc {
     Image setActualImageFocusPoint(PointF pFocusPoint) //如果选择缩放类型为ScalingUtils.ScaleType.FOCUS_CROP 需要指定一个居中点:new PointF(0.5f,0.5f)
     Image setRoundingParams(float pRadius, int pOverlayColor, int pBorder, int pBorderColor, boolean isCircle) // 修改圆角|圆形参数
     Image setRoundingParams(RoundingParams pRoundingParams)
-    // 设置圆角|圆形的角度 180度会变成圆形 // 设置覆盖的颜色 // 设置边框尺寸和颜色 // 是否设置为原型
+    // 设置圆角|圆形的角度 180度会变成圆形 // 设置覆盖的颜色 // 设置边框尺寸和颜色 // 是否设置为圆型
     Image setFadeDuration(int pFadeDuration) //渐显的时长 -> 毫秒
     Image setResizeOptions(int width, int height) //Resizing缩放模式所需宽高参数
     Image setResizeOptions(ResizeOptions pResizeOptions)
