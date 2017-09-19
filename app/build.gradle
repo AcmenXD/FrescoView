@@ -32,6 +32,6 @@ dependencies {
     /**
      * 强大的图片加载组件fresco的二次开发, 支持GIF / 圆形 / 圆角 / 边框 / 渐进式加载等功能
      */
-    compile 'com.github.AcmenXD:FrescoView:1.5'
-//    compile project(':frescoview')
+//    compile 'com.github.AcmenXD:FrescoView:2.0'
+    compile project(':frescoview')
 }

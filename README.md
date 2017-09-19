@@ -64,36 +64,34 @@
 **在Application中配置**
 ```java
 /**
- * 初始化
- * context必须设置
- */
-FrescoManager.setContext(this);
-/**
  * 设置Log开关 & 等级
  * * 默认为 开 & Log.VERBOSE
  */
-FrescoManager.setOpen(true, Log.VERBOSE);
+FrescoManager.LOG_OPEN  = true;
+FrescoManager.LOG_LEVEL = Log.VERBOSE;
 /**
  * 设置缓存图片的存放路径
- *
  * Environment.getExternalStorageDirectory().getAbsolutePath() + "/FrescoView/"
- *
- * @param cachePath     路径:默认为SD卡根目录FrescoView下 (此路径非直接存储图片的路径,还需要以下目录设置)
- * @param mainCacheDir  大图片存放目录:默认为MainCache目录
- * @param smallCacheDir 小图片存放目录:默认为SmallCache目录 (如不想区分大小图片,可设置为null或者"",表示大小图片都放在mainCacheDir目录下)
+ * * 路径:默认为SD卡根目录FrescoView下 (此路径非直接存储图片的路径,还需要以下目录设置)
+ * * 大图片存放目录:默认为MainCache目录
+ * * 小图片存放目录:默认为SmallCache目录 (如不想区分大小图片,可设置为null或者"",表示大小图片都放在mainCacheDir目录下)
  */
-FrescoManager.setCachePath(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Image/", "MainCache", "SmallCache");
+FrescoManager.IMAGE_CACHE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/FrescoView/";
+FrescoManager.MAIN_CACHE_DIR = "MainCache";
+FrescoManager.SMALL_CACHE_DIR = "SmallCache";
 /**
  * 设置缓存磁盘大小
- *
- * @param mainCacheSize  大图片磁盘大小(MB) 默认为50MB
- * @param smallCacheSize 小图片磁盘大小(MB) 默认为20MB
+ * * mainCacheSize  大图片磁盘大小(MB) 默认为50MB
+ * * smallCacheSize 小图片磁盘大小(MB) 默认为20MB
  */
-FrescoManager.setCacheSize(50, 20);
+FrescoManager.MAX_DISK_CACHE_SIZE = 50;
+FrescoManager.MAX_SMALL_DISK_LOW_CACHE_SIZE = 20;
 /**
- * 初始化 -> 配置完成后必须调用此函数生效
+ * 初始化
+ * * context必须设置
+ * * 配置完成后必须调用此函数生效
  */
-FrescoManager.init();
+FrescoManager.setContext(this);
 ```
 ### 使用 -> 以下代码 注释很详细、很重要很重要很重要!!!
 ---

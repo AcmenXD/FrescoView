@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         iv2.image()
                 .setImageURI(R.color.colorAccent)
                 .setImageURI(R.mipmap.ic_launcher)
-                .setImageURI("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1854928198,1677845423&fm=23&gp=0.jpg") //gif|webp格式
+                .setImageURI("http://ww2.sinaimg.cn/mw690/c2adb464tw1eb6k8q1yflg20dw07hqv5.gif") //gif|webp格式
                 .setBackgroundImage(getResources().getDrawable(R.color.colorPrimary))
                 .setPlaceholderImage(R.color.colorAccent)
                 .setProgressBarImage(R.mipmap.ic_launcher)

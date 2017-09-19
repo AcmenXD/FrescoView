@@ -3,7 +3,6 @@ package com.acmenxd.frescoview;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
-import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
@@ -41,14 +40,14 @@ public final class FrescoManager {
     private static final int MAX_HEAP_SIZE = (int) Runtime.getRuntime().maxMemory();
     // 使用的缓存数量
     private static final int MAX_MEMORY_CACHE_SIZE = MAX_HEAP_SIZE / 4;
-    // 默认图磁盘缓存的最大值
-    private static long MAX_DISK_CACHE_SIZE = 50 * ByteConstants.MB;
+    // 默认图磁盘缓存的最大值 单位:MB
+    public static long MAX_DISK_CACHE_SIZE = 50;
     // 默认图低磁盘空间缓存的最大值
     private static final long MAX_DISK_CACHE_LOW_SIZE = 20 * ByteConstants.MB;
     // 默认图极低磁盘空间缓存的最大值
     private static final long MAX_DISK_CACHE_VERYLOW_SIZE = 8 * ByteConstants.MB;
-    // 小图低磁盘空间缓存的最大值（特性：可将大量的小图放到额外放在另一个磁盘空间防止大图占用磁盘空间而删除了大量的小图）
-    private static long MAX_SMALL_DISK_LOW_CACHE_SIZE = 20 * ByteConstants.MB;
+    // 小图低磁盘空间缓存的最大值（特性：可将大量的小图放到额外放在另一个磁盘空间防止大图占用磁盘空间而删除了大量的小图） 单位:MB
+    public static long MAX_SMALL_DISK_LOW_CACHE_SIZE = 20;
     // 小图极低磁盘空间缓存的最大值（特性：可将大量的小图放到额外放在另一个磁盘空间防止大图占用磁盘空间而删除了大量的小图）
     private static final long MAX_SMALL_DISK_VERYLOW_CACHE_SIZE = 8 * ByteConstants.MB;
 
@@ -57,59 +56,30 @@ public final class FrescoManager {
      */
     protected static String APP_PKG_NAME = "FrescoView";  // 包名 -> 用于存取资源图片的路径拼接
     private static Context sContext; // 上下文对象
-    private static boolean LOG_OPEN = true; // Log开关
-    private static int LOG_LEVEL = Log.VERBOSE; // Log等级
-    private static File IMAGE_CACHE_PATH = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/FrescoView/");
-    private static String MAIN_CACHE_DIR = "MainCache";
-    private static String SMALL_CACHE_DIR = "SmallCache";
+    public static boolean LOG_OPEN = true; // Log开关
+    public static int LOG_LEVEL = Log.VERBOSE; // Log等级
+    //设置缓存图片的存放路径 - 路径:默认为SD卡根目录FrescoView下 (此路径非直接存储图片的路径,还需要以下目录设置)
+    public static String IMAGE_CACHE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/FrescoView/";
+    //大图片存放目录:默认为MainCache目录
+    public static String MAIN_CACHE_DIR = "MainCache";
+    //小图片存放目录:默认为SmallCache目录 (如不想区分大小图片,可设置为null或者"",表示大小图片都放在mainCacheDir目录下)
+    public static String SMALL_CACHE_DIR = "SmallCache";
 
     /**
      * 初始化
-     * context必须设置
+     * * context必须设置
+     * * 配置完成后必须调用此函数生效
      */
     public static void setContext(@NonNull Context pContext) {
         sContext = pContext;
         APP_PKG_NAME = sContext.getPackageName();
-    }
-
-    /**
-     * 设置Log开关 & 等级
-     * * 默认为 开 & Log.VERBOSE
-     */
-    public static void setOpen(boolean isOpen, int logLevel) {
-        LOG_OPEN = isOpen;
-        LOG_LEVEL = logLevel;
-    }
-
-    /**
-     * 设置缓存图片的存放路径
-     * Environment.getExternalStorageDirectory().getAbsolutePath() + "/FrescoView/"
-     *
-     * @param cachePath     路径:默认为SD卡根目录FrescoView下 (此路径非直接存储图片的路径,还需要以下目录设置)
-     * @param mainCacheDir  大图片存放目录:默认为MainCache目录
-     * @param smallCacheDir 小图片存放目录:默认为SmallCache目录 (如不想区分大小图片,可设置为null或者"",表示大小图片都放在mainCacheDir目录下)
-     */
-    public static void setCachePath(@NonNull String cachePath, @NonNull String mainCacheDir, @NonNull String smallCacheDir) {
-        IMAGE_CACHE_PATH = new File(cachePath);
-        MAIN_CACHE_DIR = mainCacheDir;
-        SMALL_CACHE_DIR = smallCacheDir;
-    }
-
-    /**
-     * 设置缓存磁盘大小
-     *
-     * @param mainCacheSize  大图片磁盘大小(MB) 默认为50MB
-     * @param smallCacheSize 小图片磁盘大小(MB) 默认为20MB
-     */
-    public static void setCacheSize(@IntRange(from = 0) long mainCacheSize, @IntRange(from = 0) long smallCacheSize) {
-        MAX_DISK_CACHE_SIZE = mainCacheSize * ByteConstants.MB;
-        MAX_SMALL_DISK_LOW_CACHE_SIZE = smallCacheSize * ByteConstants.MB;
+        init();
     }
 
     /**
      * 初始化 -> 配置完成后必须调用此函数生效
      */
-    public static final synchronized void init() {
+    private static synchronized void init() {
         // 内存配置
         final MemoryCacheParams memoryCacheParams = new MemoryCacheParams(
                 MAX_MEMORY_CACHE_SIZE,// 内存缓存中总图片的最大大小,以字节为单位。
@@ -126,9 +96,9 @@ public final class FrescoManager {
         };
         // 默认图片的磁盘配置
         DiskCacheConfig mainDiskCacheConfig = DiskCacheConfig.newBuilder(sContext)
-                .setBaseDirectoryPath(IMAGE_CACHE_PATH)
+                .setBaseDirectoryPath(new File(IMAGE_CACHE_PATH))
                 .setBaseDirectoryName(MAIN_CACHE_DIR)
-                .setMaxCacheSize(MAX_DISK_CACHE_SIZE)//默认缓存的最大大小。
+                .setMaxCacheSize(MAX_DISK_CACHE_SIZE * ByteConstants.MB)//默认缓存的最大大小。
                 .setMaxCacheSizeOnLowDiskSpace(MAX_DISK_CACHE_LOW_SIZE)//缓存的最大大小,使用设备时低磁盘空间。
                 .setMaxCacheSizeOnVeryLowDiskSpace(MAX_DISK_CACHE_VERYLOW_SIZE)//缓存的最大大小,当设备极低磁盘空间
                 .build();
@@ -136,10 +106,10 @@ public final class FrescoManager {
         DiskCacheConfig smallImageDiskCacheConfig = null;
         if (!TextUtils.isEmpty(SMALL_CACHE_DIR)) {
             smallImageDiskCacheConfig = DiskCacheConfig.newBuilder(sContext)
-                    .setBaseDirectoryPath(IMAGE_CACHE_PATH) //存储路径
+                    .setBaseDirectoryPath(new File(IMAGE_CACHE_PATH)) //存储路径
                     .setBaseDirectoryName(SMALL_CACHE_DIR) //文件名
-                    .setMaxCacheSize(MAX_DISK_CACHE_SIZE) //默认缓存的最大大小
-                    .setMaxCacheSizeOnLowDiskSpace(MAX_SMALL_DISK_LOW_CACHE_SIZE) //缓存的最大大小,使用设备时低磁盘空间
+                    .setMaxCacheSize(MAX_DISK_CACHE_SIZE * ByteConstants.MB) //默认缓存的最大大小
+                    .setMaxCacheSizeOnLowDiskSpace(MAX_SMALL_DISK_LOW_CACHE_SIZE * ByteConstants.MB) //缓存的最大大小,使用设备时低磁盘空间
                     .setMaxCacheSizeOnVeryLowDiskSpace(MAX_SMALL_DISK_VERYLOW_CACHE_SIZE) //缓存的最大大小,当设备极低磁盘空间
                     .build();
         }

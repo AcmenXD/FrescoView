@@ -37,15 +37,19 @@ public final class BaseApplication extends Application {
 
     @Override
     public void onCreate() {
+        super.onCreate();
         startTime = System.currentTimeMillis();
         /**
          * 配置FrescoView
          */
+        FrescoManager.LOG_OPEN  = true;
+        FrescoManager.LOG_LEVEL = Log.VERBOSE;
+        FrescoManager.IMAGE_CACHE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/FrescoView/";
+        FrescoManager.MAIN_CACHE_DIR = "MainCache";
+        FrescoManager.SMALL_CACHE_DIR = "SmallCache";
+        FrescoManager.MAX_DISK_CACHE_SIZE = 50;
+        FrescoManager.MAX_SMALL_DISK_LOW_CACHE_SIZE = 20;
         FrescoManager.setContext(this);
-        FrescoManager.setOpen(true, Log.VERBOSE);
-        FrescoManager.setCachePath(Environment.getExternalStorageDirectory().getAbsolutePath() + "/FrescoView/", "MainCache", "SmallCache");
-        FrescoManager.setCacheSize(50, 20);
-        FrescoManager.init();
         // 初始化完毕
         isInitFinish = true;
     }
