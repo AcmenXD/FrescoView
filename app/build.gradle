@@ -22,6 +22,6 @@ android {
 }
 
 dependencies {
-//    compile config.frescoview
-    compile project(':frescoview')
+    compile config.frescoview
+//    compile project(':frescoview')
 }
