@@ -1,4 +1,4 @@
-package com.acmenxd.frescoview.utils;
+package com.acmenxd.frescoview;
 
 import android.support.annotation.NonNull;
 
@@ -6,10 +6,10 @@ import android.support.annotation.NonNull;
  * @author AcmenXD
  * @version v1.0
  * @github https://github.com/AcmenXD
- * @date 2017/3/24 15:17
- * @detail 工具类
+ * @date 2018/5/22 17:47
+ * @detail Fresco工具类
  */
-public final class FrescoUtils {
+public class FrescoUtils {
     /**
      * 串拼接
      *

@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="btnClick1"
-            android:text="Gif图片"
+            android:text="获取网络图片"
             android:textAllCaps="false"/>
 
         <Button
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="btnClick2"
-            android:text="网络图片"
+            android:text="获取网络图片"
             android:textAllCaps="false"/>
 
         <Button
@@ -40,19 +40,6 @@
             android:onClick="btnClick4"
             android:text="动画暂停"
             android:textAllCaps="false"/>
-        <!-- xml布局中定义FrescoView -->
-
-        <com.acmenxd.frescoview.FrescoView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-
-        <com.acmenxd.frescoview.FrescoView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
 
         <com.acmenxd.frescoview.FrescoView
             android:id="@+id/imageView1"
@@ -80,7 +67,16 @@
             fresco:roundWithOverlayColor="@color/colorAccent"
             fresco:roundedCornerRadius="30dp"
             fresco:roundingBorderColor="@color/colorAccent"
-            fresco:roundingBorderWidth="10dp"
-            />
+            fresco:roundingBorderWidth="10dp"/>
+
+        <com.acmenxd.frescoview.FrescoView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <com.acmenxd.frescoview.FrescoView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </ScrollView>

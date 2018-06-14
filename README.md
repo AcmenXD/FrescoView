@@ -19,30 +19,24 @@
 	}
 ```
 ```
-	 compile 'com.github.AcmenXD:FrescoView:2.0'
+	 compile 'com.github.AcmenXD:FrescoView:3.0'
 ```
 ### 混淆
 ---
 ```
-     #FrescoView默认使用okhttp3,所以要加入此配置
-     -dontwarn okhttp3.**
-     -dontwarn okio.**
-     -dontwarn com.squareup.okhttp3.**
-
-     #fresco的混淆配置
-     -keep,allowobfuscation @interface com.facebook.common.internal.DoNotStrip
-     -keep @com.facebook.common.internal.DoNotStrip class *
-     -keepclassmembers class * {
-         @com.facebook.common.internal.DoNotStrip *;
-     }
-     -keepclassmembers class * {
-         native <methods>;
-     }
-     -dontwarn okio.**
-     -dontwarn com.squareup.okhttp.**
-     -dontwarn okhttp3.**
-     -dontwarn javax.annotation.**
-     -dontwarn com.android.volley.toolbox.**
+    -dontwarn okio.**
+    -dontwarn okhttp3.**
+    -dontwarn com.squareup.okhttp3.**
+    -dontwarn javax.annotation.**
+    -dontwarn com.android.volley.toolbox.**
+    -keep,allowobfuscation @interface com.facebook.common.internal.DoNotStrip
+    -keep @com.facebook.common.internal.DoNotStrip class *
+    -keepclassmembers class * {
+        @com.facebook.common.internal.DoNotStrip *;
+    }
+    -keepclassmembers class * {
+        native <methods>;
+    }
 ```
 ### 功能
 ---
@@ -91,7 +85,7 @@ FrescoManager.MAX_SMALL_DISK_LOW_CACHE_SIZE = 20;
  * * context必须设置
  * * 配置完成后必须调用此函数生效
  */
-FrescoManager.setContext(this);
+FrescoManager.init(context);
 ```
 ### 使用 -> 以下代码 注释很详细、很重要很重要很重要!!!
 ---

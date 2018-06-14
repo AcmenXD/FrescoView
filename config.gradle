@@ -1,0 +1,32 @@
+/**
+ * build.gradle Module统一配置
+ */
+ext {
+    compileSdkVersion = 26
+    buildToolsVersion = "27.0.3"
+    minSdkVersion = 14
+    targetSdkVersion = 26
+
+    // 图片加载库
+    frescoview = "com.github.AcmenXD:FrescoView:3.0"
+
+    // 系统库
+    system = [
+            appcompatV7 : "com.android.support:appcompat-v7:26.1.0",
+    ]
+
+    fresco = [
+            // facebook推出的图片处理库
+            fresco            : "com.facebook.fresco:fresco:1.0.1",
+            // 支持okhttp3网络库请求
+            fresco_okhttp3    : "com.facebook.fresco:imagepipeline-okhttp3:1.0.1",
+            // 支持gif时需要添加
+            fresco_gif        : "com.facebook.fresco:animated-gif:1.0.1",
+            // 支持 WebP （静态图+动图），需要添加
+            fresco_webp       : "com.facebook.fresco:animated-webp:1.0.1",
+            // 在 API < 14(4.0) 上的机器支持 WebP 时，需要添加
+            fresco_support    : "com.facebook.fresco:animated-base-support:1.0.1",
+            // 支持 WebP 静态图，需要添加
+            fresco_webpsupport: "com.facebook.fresco:webpsupport:1.0.1",
+    ]
+}

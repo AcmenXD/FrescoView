@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.acmenxd.frescoview.utils.FrescoUtils;
 import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.common.internal.Supplier;
 import com.facebook.common.logging.FLog;
@@ -70,7 +69,7 @@ public final class FrescoManager {
      * * context必须设置
      * * 配置完成后必须调用此函数生效
      */
-    public static void setContext(@NonNull Context pContext) {
+    public static void init(@NonNull Context pContext) {
         sContext = pContext;
         APP_PKG_NAME = sContext.getPackageName();
         init();

@@ -49,7 +49,7 @@ public final class BaseApplication extends Application {
         FrescoManager.SMALL_CACHE_DIR = "SmallCache";
         FrescoManager.MAX_DISK_CACHE_SIZE = 50;
         FrescoManager.MAX_SMALL_DISK_LOW_CACHE_SIZE = 20;
-        FrescoManager.setContext(this);
+        FrescoManager.init(this);
         // 初始化完毕
         isInitFinish = true;
     }
